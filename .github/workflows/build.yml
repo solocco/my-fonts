@@ -107,13 +107,13 @@ jobs:
         id: check-release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ matrix.font.name }}/v${{ needs.detect-version.outputs.version }}
+          TAG: ${{ matrix.font.name }}-v${{ needs.detect-version.outputs.version }}
         run: |
           HTTP=$(gh api repos/${{ github.repository }}/releases/tags/"$TAG" \
             --silent -i 2>&1 | head -1 | awk '{print $2}')
           if [ "$HTTP" = "200" ]; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
-            echo "Release $TAG already exists — skipping patch"
+            echo "Release $TAG already exists — skipping"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
@@ -165,7 +165,7 @@ jobs:
         id: check-release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: Iosevka/v${{ needs.detect-version.outputs.version }}
+          TAG: Iosevka-v${{ needs.detect-version.outputs.version }}
         run: |
           HTTP=$(gh api repos/${{ github.repository }}/releases/tags/"$TAG" \
             --silent -i 2>&1 | head -1 | awk '{print $2}')
@@ -217,7 +217,6 @@ jobs:
       - name: Package fonts
         if: steps.check-release.outputs.exists == 'false'
         run: |
-          VERSION="${{ needs.detect-version.outputs.version }}"
           cd selected
           zip -rq "$GITHUB_WORKSPACE/Iosevka-TTF.zip" .
           tar cJf "$GITHUB_WORKSPACE/Iosevka-TTF.tar.xz" .
@@ -279,7 +278,7 @@ jobs:
         if: steps.download.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ matrix.font.name }}/v${{ needs.detect-version.outputs.version }}
+          TAG: ${{ matrix.font.name }}-v${{ needs.detect-version.outputs.version }}
           VERSION: ${{ needs.detect-version.outputs.version }}
           NF_TAG: ${{ needs.detect-version.outputs.nf_tag }}
         run: |
@@ -288,7 +287,7 @@ jobs:
             --title "${{ matrix.font.title }} (v${VERSION})" \
             --notes "Built from [Iosevka v${VERSION}](https://github.com/be5invis/Iosevka/releases/tag/v${VERSION})
           Patched with [Nerd Fonts ${NF_TAG}](https://github.com/ryanoasis/nerd-fonts/releases/tag/${NF_TAG})" \
-            --latest 2>/dev/null || true
+            2>/dev/null || true
           for f in dist/*; do
             gh release upload "$TAG" \
               --repo ${{ github.repository }} \
