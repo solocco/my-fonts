@@ -1,0 +1,10 @@
+[
+  { "name": "Iosevka", "plan": null, "title": "Iosevka (patched with Nerd Fonts)" },
+  { "name": "IoskeleyMono", "plan": "IoskeleyMono", "title": "IoskeleyMono" },
+  { "name": "PieMono", "plan": "PieMono", "title": "PieMono" },
+  { "name": "CidMono", "plan": "CidMono", "title": "CidMono" },
+  { "name": "Mayulite", "plan": "Mayulite", "title": "Mayulite" },
+  { "name": "Firastorm", "plan": "firastorm", "title": "Firastorm" },
+  { "name": "MayuCode", "plan": "MayuCode", "title": "MayuCode" },
+  { "name": "Runesevka", "plan": "Runesevka", "title": "Runesevka" }
+]

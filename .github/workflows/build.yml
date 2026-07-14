@@ -56,27 +56,31 @@ jobs:
           echo "✓ Iosevka: $TAG | Nerd Fonts: $NF_TAG"
 
   # ──────────────────────────────────────────────
+  # Load font matrix from fonts.json
+  # ──────────────────────────────────────────────
+  load-config:
+    runs-on: ubuntu-latest
+    outputs:
+      fonts: ${{ steps.set.outputs.fonts }}
+      build_fonts: ${{ steps.set.outputs.build_fonts }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: set
+        run: |
+          echo "fonts=$(jq -c . fonts.json)" >> "$GITHUB_OUTPUT"
+          echo "build_fonts=$(jq -c '[.[] | select(.plan != null)]' fonts.json)" >> "$GITHUB_OUTPUT"
+
+  # ──────────────────────────────────────────────
   # Build custom fonts from source
   # ──────────────────────────────────────────────
   build:
-    needs: detect-version
+    needs: [detect-version, load-config]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        font:
-          - name: IoskeleyMono
-            plan: IoskeleyMono
-          - name: PieMono
-            plan: PieMono
-          - name: CidMono
-            plan: CidMono
-          - name: Mayulite
-            plan: Mayulite
-          - name: Firastorm
-            plan: firastorm
-          - name: MayuCode
-            plan: MayuCode
+        font: ${{ fromJson(needs.load-config.outputs.build_fonts) }}
     steps:
       - uses: actions/checkout@v4
 
@@ -242,7 +246,7 @@ jobs:
   # Release per font
   # ──────────────────────────────────────────────
   release:
-    needs: [detect-version, build, patch-iosevka]
+    needs: [detect-version, build, patch-iosevka, load-config]
     if: always() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
@@ -250,21 +254,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        font:
-          - name: Iosevka
-            title: "Iosevka (patched with Nerd Fonts)"
-          - name: IoskeleyMono
-            title: "IoskeleyMono"
-          - name: PieMono
-            title: "PieMono"
-          - name: CidMono
-            title: "CidMono"
-          - name: Mayulite
-            title: "Mayulite"
-          - name: Firastorm
-            title: "Firastorm"
-          - name: MayuCode
-            title: "MayuCode"
+        font: ${{ fromJson(needs.load-config.outputs.fonts) }}
     steps:
       - name: Download artifacts
         id: download

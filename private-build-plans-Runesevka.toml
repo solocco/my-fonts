@@ -1,0 +1,106 @@
+[buildPlans.Runesevka]
+family = "Runesevka"
+spacing = "normal"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+###################################################################################################
+# Configure variants
+[buildPlans.Runesevka.variants.design]
+one = "base-flat-top-serif"
+two = "straight-neck-serifless"
+three = "two-arcs"
+four = "closed-serifless"
+five = "upright-arched-serifless"
+six = "closed-contour"
+seven = "straight-serifed"
+eight = "two-circles"
+nine = "closed-contour"
+zero = "dotted"
+capital-a = "straight-serifless"
+capital-b = "standard-serifless"
+capital-c = "serifless"
+capital-d = "standard-serifless"
+capital-g = "toothed-serifless-hooked"
+capital-i = "serifed"
+capital-j = "serifed"
+capital-k = "symmetric-connected-serifless"
+capital-l = "serifless"
+capital-m = "hanging-serifless"
+capital-n = "asymmetric-serifless"
+capital-q = "vertical-crossing"
+capital-u = "toothless-rounded-serifless"
+capital-v = "straight-serifless"
+capital-w = "straight-serifless"
+a = "double-storey-serifed"
+f = "flat-hook-serifless"
+g = "single-storey-serifless"
+i = "serifed-flat-tailed"
+j = "flat-hook-serifed"
+k = "symmetric-connected-serifless"
+l = "serifed-flat-tailed"
+m = "serifless"
+r = "hookless-top-serifed"
+t = "flat-hook-short-neck2"
+u = "toothed-serifless"
+w = "straight-flat-top-serifless"
+y = "straight-turn-serifless"
+capital-delta = "straight"
+lower-theta = "capsule"
+lower-iota = "serifed-flat-tailed"
+lower-lambda = "straight-turn"
+lower-tau = "flat-tailed"
+cyrl-capital-ka = "straight-serifless"
+cyrl-ka = "straight-serifless"
+cyrl-u = "straight-turn-serifless"
+cyrl-yery = "corner-tailed"
+tittle = "square"
+diacritic-dot = "square"
+punctuation-dot = "square"
+braille-dot = "square"
+tilde = "low"
+asterisk = "penta-high"
+underscore = "high"
+caret = "high"
+ascii-grave = "straight"
+ascii-single-quote = "straight"
+paren = "flat-arc"
+brace = "straight"
+guillemet = "straight"
+number-sign = "slanted"
+ampersand = "closed"
+at = "fourfold"
+dollar = "open"
+cent = "open"
+percent = "dots"
+bar = "natural-slope"
+question = "corner"
+pilcrow = "low"
+###################################################################################################
+[buildPlans.Runesevka.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+[buildPlans.Runesevka.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+[buildPlans.Runesevka.weights.Medium]
+shape = 500
+menu = 500
+css = 500
+[buildPlans.Runesevka.widths.Normal]
+shape = 500
+menu = 5
+css = "normal"
+###################################################################################################
+[buildPlans.Runesevka.slopes.Upright]
+angle = 0
+shape = "upright"
+menu  = "upright"
+css   = "normal"
+[buildPlans.Runesevka.slopes.Italic]
+angle = 9.4
+shape = "italic"
+menu  = "italic"
+css   = "italic"
