@@ -37,7 +37,7 @@ shape = 500
 menu = 500
 css = 500
 [buildPlans.Fenmono.widths.Normal]
-shape = 525
+shape = 528
 menu = 5
 css = "normal"
 [buildPlans.Fenmono.slopes.Upright]
